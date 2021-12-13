@@ -16,4 +16,9 @@ class TitleViewlet(common.TitleViewlet):
 
         if ISEOFieldsMarker.providedBy(self.context):
             if self.context.seo_title:
-                self.site_title = escape(safe_unicode(self.context.seo_title))
+                seo_title = escape(safe_unicode(self.context.seo_title))
+                portal_title = self.site_title_setting
+                self.site_title = self.sep.join([
+                    seo_title,
+                    portal_title
+                ])
